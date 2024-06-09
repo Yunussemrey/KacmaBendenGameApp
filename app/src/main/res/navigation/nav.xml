@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav"
+    app:startDestination="@id/girisFragment">
+
+    <fragment
+        android:id="@+id/girisFragment"
+        android:name="com.yunusemre.oyunapp.fragment.GirisFragment"
+        android:label="fragment_giris"
+        tools:layout="@layout/fragment_giris" >
+        <action
+            android:id="@+id/oyunGecis"
+            app:destination="@id/oyunFragment" />
+        <action
+            android:id="@+id/ayarlarGidis"
+            app:destination="@id/ayarlarFragment" />
+        <action
+            android:id="@+id/bolumFragmentGit"
+            app:destination="@id/bolumFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/oyunFragment"
+        android:name="com.yunusemre.oyunapp.fragment.OyunFragment"
+        android:label="fragment_oyun"
+        tools:layout="@layout/fragment_oyun" >
+        <action
+            android:id="@+id/oyun2Git"
+            app:destination="@id/oyun2Fragment" />
+        <action
+            android:id="@+id/oyun1ToGiris"
+            app:destination="@id/girisFragment"
+            app:popUpToInclusive="false" />
+    </fragment>
+    <fragment
+        android:id="@+id/oyun2Fragment"
+        android:name="com.yunusemre.oyunapp.fragment.Oyun2Fragment"
+        android:label="fragment_oyun2"
+        tools:layout="@layout/fragment_oyun2" >
+        <action
+            android:id="@+id/oyun3Git"
+            app:destination="@id/oyun3Fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/ayarlarFragment"
+        android:name="com.yunusemre.oyunapp.fragment.AyarlarFragment"
+        android:label="fragment_ayarlar"
+        tools:layout="@layout/fragment_ayarlar" />
+    <fragment
+        android:id="@+id/oyun3Fragment"
+        android:name="com.yunusemre.oyunapp.fragment.Oyun3Fragment"
+        android:label="fragment_oyun3"
+        tools:layout="@layout/fragment_oyun3" >
+        <action
+            android:id="@+id/oyun4Git"
+            app:destination="@id/oyun4Fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/oyun4Fragment"
+        android:name="com.yunusemre.oyunapp.fragment.Oyun4Fragment"
+        android:label="fragment_oyun4"
+        tools:layout="@layout/fragment_oyun4" >
+        <action
+            android:id="@+id/oyun5Git"
+            app:destination="@id/oyun5Fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/oyun5Fragment"
+        android:name="com.yunusemre.oyunapp.fragment.Oyun5Fragment"
+        android:label="fragment_oyun5"
+        tools:layout="@layout/fragment_oyun5" >
+        <action
+            android:id="@+id/oyun6Git"
+            app:destination="@id/oyun6Fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/oyun6Fragment"
+        android:name="com.yunusemre.oyunapp.fragment.Oyun6Fragment"
+        android:label="fragment_oyun6"
+        tools:layout="@layout/fragment_oyun6" >
+        <action
+            android:id="@+id/oyun7Git"
+            app:destination="@id/oyun7Fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/oyun7Fragment"
+        android:name="com.yunusemre.oyunapp.fragment.Oyun7Fragment"
+        android:label="fragment_oyun7"
+        tools:layout="@layout/fragment_oyun7" >
+        <action
+            android:id="@+id/oyun8Git"
+            app:destination="@id/oyun8Fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/oyun8Fragment"
+        android:name="com.yunusemre.oyunapp.fragment.Oyun8Fragment"
+        android:label="fragment_oyun8"
+        tools:layout="@layout/fragment_oyun8" >
+        <action
+            android:id="@+id/oyun9Git"
+            app:destination="@id/oyun9Fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/oyun9Fragment"
+        android:name="com.yunusemre.oyunapp.fragment.Oyun9Fragment"
+        android:label="fragment_oyun9"
+        tools:layout="@layout/fragment_oyun9" >
+        <action
+            android:id="@+id/oyun10Git"
+            app:destination="@id/oyun10Fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/oyun10Fragment"
+        android:name="com.yunusemre.oyunapp.fragment.Oyun10Fragment"
+        android:label="fragment_oyun10"
+        tools:layout="@layout/fragment_oyun10" />
+    <fragment
+        android:id="@+id/bolumFragment"
+        android:name="com.yunusemre.oyunapp.fragment.BolumFragment"
+        android:label="fragment_bolum"
+        tools:layout="@layout/fragment_bolum" />
+</navigation>
