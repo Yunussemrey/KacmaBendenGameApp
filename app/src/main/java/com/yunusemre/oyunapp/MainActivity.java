@@ -24,17 +24,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    @Override
-    protected void onStop() {
-        super.onStop();
-        Intent intent = new Intent(this, MusicService.class);
-        stopService(intent);
-    }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        Intent intent = new Intent(this, MusicService.class);
-        stopService(intent);
-    }
+
+
 }

@@ -1,0 +1,391 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragment.Oyun4Fragment"
+    android:background="@drawable/orig">
+
+    <androidx.gridlayout.widget.GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:columnCount="6"
+        app:layout_constraintBottom_toTopOf="@+id/adViewOyun4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewZaman4"
+        app:rowCount="6">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/kid"
+            app:layout_column="0"
+            app:layout_row="0" />
+
+        <ImageView
+            android:id="@+id/imageView0"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/kid"
+            app:layout_column="1"
+            app:layout_row="0" />
+
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="50dp"
+            android:layout_height="60dp"
+            android:src="@drawable/kid"
+            app:layout_column="2"
+            app:layout_row="0" />
+
+        <ImageView
+            android:id="@+id/imageViewzombi1"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/zombi"
+            app:layout_column="3"
+            app:layout_row="0" />
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="50dp"
+            android:layout_height="60dp"
+            android:src="@drawable/kid"
+            app:layout_column="4"
+            app:layout_row="0" />
+
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/kid"
+            app:layout_column="5"
+            app:layout_row="0" />
+
+        <ImageView
+            android:id="@+id/imageViewelma1"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/apple"
+            app:layout_column="0"
+            app:layout_row="1" />
+
+        <ImageView
+            android:id="@+id/imageView6"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/kid"
+            app:layout_column="1"
+            app:layout_row="1" />
+
+        <ImageView
+            android:id="@+id/imageViewmuz1"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/banana"
+            app:layout_column="2"
+            app:layout_row="1" />
+
+        <ImageView
+            android:id="@+id/imageView8"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/kid"
+            app:layout_column="3"
+            app:layout_row="1" />
+
+        <ImageView
+            android:id="@+id/imageViewzombi2"
+            android:layout_width="40dp"
+            android:layout_height="50dp"
+            android:src="@drawable/zombi"
+            app:layout_column="4"
+            app:layout_row="1" />
+
+        <ImageView
+            android:id="@+id/imageView10"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/kid"
+            app:layout_column="5"
+            app:layout_row="1" />
+
+        <ImageView
+            android:id="@+id/imageView11"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/kid"
+            app:layout_column="0"
+            app:layout_row="2" />
+
+        <ImageView
+            android:id="@+id/imageView12"
+            android:layout_width="50dp"
+            android:layout_height="60dp"
+            android:src="@drawable/kid"
+            app:layout_column="1"
+            app:layout_row="2" />
+
+        <ImageView
+            android:id="@+id/imageViewzombi3"
+            android:layout_width="40dp"
+            android:layout_height="50dp"
+            android:src="@drawable/zombi"
+            app:layout_column="2"
+            app:layout_row="2" />
+
+        <ImageView
+            android:id="@+id/imageView14"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/kid"
+            app:layout_column="3"
+            app:layout_row="2" />
+
+        <ImageView
+            android:id="@+id/imageView15"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/kid"
+            app:layout_column="4"
+            app:layout_row="2" />
+
+        <ImageView
+            android:id="@+id/imageViewzombi4"
+            android:layout_width="40dp"
+            android:layout_height="50dp"
+            android:src="@drawable/zombi"
+            app:layout_column="5"
+            app:layout_row="2" />
+
+        <ImageView
+            android:id="@+id/imageViewzombi5"
+            android:layout_width="40dp"
+            android:layout_height="50dp"
+            android:src="@drawable/zombi"
+            app:layout_column="0"
+            app:layout_row="3" />
+
+        <ImageView
+            android:id="@+id/imageView18"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/kid"
+            app:layout_column="1"
+            app:layout_row="3" />
+
+        <ImageView
+            android:id="@+id/imageView19"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/kid"
+            app:layout_column="2"
+            app:layout_row="3" />
+
+        <ImageView
+            android:id="@+id/imageViewelma2"
+            android:layout_width="40dp"
+            android:layout_height="50dp"
+            android:src="@drawable/apple"
+            app:layout_column="3"
+            app:layout_row="3" />
+
+        <ImageView
+            android:id="@+id/imageView21"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/kid"
+            app:layout_column="4"
+            app:layout_row="3" />
+
+        <ImageView
+            android:id="@+id/imageView22"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/kid"
+            app:layout_column="5"
+            app:layout_row="3" />
+
+        <ImageView
+            android:id="@+id/imageView23"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/kid"
+            app:layout_column="0"
+            app:layout_row="4" />
+
+        <ImageView
+            android:id="@+id/imageView24"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/kid"
+            app:layout_column="1"
+            app:layout_row="4" />
+
+        <ImageView
+            android:id="@+id/imageViewmuz2"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/banana"
+            app:layout_column="2"
+            app:layout_row="4" />
+
+        <ImageView
+            android:id="@+id/imageViewzombi6"
+            android:layout_width="50dp"
+            android:layout_height="60dp"
+            android:src="@drawable/zombi"
+            app:layout_column="3"
+            app:layout_row="4" />
+
+        <ImageView
+            android:id="@+id/imageView27"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/kid"
+            app:layout_column="4"
+            app:layout_row="4" />
+
+        <ImageView
+            android:id="@+id/imageView28"
+            android:layout_width="50dp"
+            android:layout_height="60dp"
+            android:src="@drawable/kid"
+            app:layout_column="5"
+            app:layout_row="4" />
+
+        <ImageView
+            android:id="@+id/imageView29"
+            android:layout_width="50dp"
+            android:layout_height="60dp"
+            android:src="@drawable/kid"
+            app:layout_column="0"
+            app:layout_row="5" />
+
+        <ImageView
+            android:id="@+id/imageViewzombi7"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/zombi"
+            app:layout_column="1"
+            app:layout_row="5" />
+
+        <ImageView
+            android:id="@+id/imageView31"
+            android:layout_width="50dp"
+            android:layout_height="60dp"
+            android:src="@drawable/kid"
+            app:layout_column="2"
+            app:layout_row="5" />
+
+        <ImageView
+            android:id="@+id/imageView32"
+            android:layout_width="50dp"
+            android:layout_height="60dp"
+            android:src="@drawable/kid"
+            app:layout_column="3"
+            app:layout_row="5" />
+
+        <ImageView
+            android:id="@+id/imageViewmuz3"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/banana"
+            app:layout_column="4"
+            app:layout_row="5" />
+
+        <ImageView
+            android:id="@+id/imageView34"
+            android:layout_width="50dp"
+            android:layout_height="60dp"
+            android:src="@drawable/kid"
+            app:layout_column="5"
+            app:layout_row="5" />
+    </androidx.gridlayout.widget.GridLayout>
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:fontFamily="casual"
+        android:text="Puan:"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewZaman4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:fontFamily="casual"
+        android:text="Zaman:"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/textView8"
+        app:layout_constraintStart_toStartOf="@+id/textView8"
+        app:layout_constraintTop_toBottomOf="@+id/textView8" />
+
+    <TextView
+        android:id="@+id/puan4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView8"
+        app:layout_constraintStart_toEndOf="@+id/textView8"
+        app:layout_constraintTop_toTopOf="@+id/textView8" />
+
+    <TextView
+        android:id="@+id/zaman4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/textViewZaman4"
+        app:layout_constraintStart_toEndOf="@+id/textViewZaman4"
+        app:layout_constraintTop_toTopOf="@+id/textViewZaman4" />
+
+    <ImageView
+        android:id="@+id/stop4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:src="@drawable/pause"
+        app:layout_constraintBottom_toBottomOf="@+id/textView8"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textView8" />
+
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/adViewOyun4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:adSize="BANNER"
+        app:adUnitId="ca-app-pub-3475820063501035/8942927461"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+    </com.google.android.gms.ads.AdView>
+
+    <TextView
+        android:id="@+id/textView20"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:fontFamily="@font/joti_one"
+        android:text="Bölüm 4"
+        android:textColor="#852525"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/textView8"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textView8" />
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -3,6 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="com.google.android.gms.permission.AD_ID"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -24,7 +27,9 @@
         </activity>
         <meta-data
             android:name="com.yunusemre.oyunapp.VERSION_CODE" android:value="$ {versionCode}" ></meta-data>
-        <service android:name=".MusicService"></service>
+        <service android:name=".entity.MusicService"></service>
+        <service android:name=".entity.Music2Service"></service>
+
         <meta-data
             android:name="com.yunusemre.oyunapp.VERSION_NAME" android:value="$ {versionName}"></meta-data>
         <meta-data

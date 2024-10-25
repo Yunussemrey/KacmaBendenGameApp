@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragment.BolumFragment"
+    android:background="@drawable/orig">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <ImageView
+            android:id="@+id/numberOne"
+            android:layout_width="70dp"
+            android:layout_height="100dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="32dp"
+            android:src="@drawable/number_one"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/numberTwo"
+            android:layout_width="70dp"
+            android:layout_height="100dp"
+            android:layout_marginStart="32dp"
+            android:src="@drawable/number_two"
+            app:layout_constraintBottom_toBottomOf="@+id/numberOne"
+            app:layout_constraintStart_toEndOf="@+id/numberOne"
+            app:layout_constraintTop_toTopOf="@+id/numberOne" />
+
+        <ImageView
+            android:id="@+id/numberThree"
+            android:layout_width="70dp"
+            android:layout_height="100dp"
+            android:layout_marginStart="32dp"
+            android:src="@drawable/number_tree"
+            app:layout_constraintBottom_toBottomOf="@+id/numberTwo"
+            app:layout_constraintStart_toEndOf="@+id/numberTwo"
+            app:layout_constraintTop_toTopOf="@+id/numberTwo" />
+
+    <ImageView
+        android:id="@+id/lockOne"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:src="@drawable/lock_open"
+        app:layout_constraintEnd_toEndOf="@+id/numberOne"
+        app:layout_constraintTop_toTopOf="@+id/numberOne" />
+
+    <ImageView
+        android:id="@+id/lockTwo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:src="@drawable/lock_close"
+        app:layout_constraintEnd_toEndOf="@+id/numberTwo"
+        app:layout_constraintTop_toTopOf="@+id/numberTwo" />
+
+    <ImageView
+        android:id="@+id/lockThree"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:src="@drawable/lock_close"
+        app:layout_constraintEnd_toEndOf="@+id/numberThree"
+        app:layout_constraintTop_toTopOf="@+id/numberThree" />
+
+        <ImageView
+            android:id="@+id/numberFour"
+            android:layout_width="70dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="32dp"
+            android:src="@drawable/number_four"
+            app:layout_constraintEnd_toEndOf="@+id/numberOne"
+            app:layout_constraintStart_toStartOf="@+id/numberOne"
+            app:layout_constraintTop_toBottomOf="@+id/numberOne" />
+
+    <ImageView
+        android:id="@+id/lockFour"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:src="@drawable/lock_close"
+        app:layout_constraintEnd_toEndOf="@+id/numberFour"
+        app:layout_constraintTop_toTopOf="@+id/numberFour" />
+
+        <ImageView
+            android:id="@+id/numberFive"
+            android:layout_width="70dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="32dp"
+            android:src="@drawable/number_five"
+            app:layout_constraintEnd_toEndOf="@+id/numberTwo"
+            app:layout_constraintStart_toStartOf="@+id/numberTwo"
+            app:layout_constraintTop_toBottomOf="@+id/numberTwo" />
+
+    <ImageView
+        android:id="@+id/lockFive"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:src="@drawable/lock_close"
+        app:layout_constraintEnd_toEndOf="@+id/numberFive"
+        app:layout_constraintTop_toTopOf="@+id/numberFive" />
+
+        <ImageView
+            android:id="@+id/numberSix"
+            android:layout_width="70dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="32dp"
+            android:src="@drawable/number_six"
+            app:layout_constraintEnd_toEndOf="@+id/numberThree"
+            app:layout_constraintStart_toStartOf="@+id/numberThree"
+            app:layout_constraintTop_toBottomOf="@+id/numberThree" />
+
+    <ImageView
+        android:id="@+id/lockSix"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:src="@drawable/lock_close"
+        app:layout_constraintEnd_toEndOf="@+id/numberSix"
+        app:layout_constraintTop_toTopOf="@+id/numberSix" />
+
+        <ImageView
+            android:id="@+id/numberSeven"
+            android:layout_width="70dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="32dp"
+            android:src="@drawable/number_seven"
+            app:layout_constraintEnd_toEndOf="@+id/numberFour"
+            app:layout_constraintStart_toStartOf="@+id/numberFour"
+            app:layout_constraintTop_toBottomOf="@+id/numberFour" />
+
+    <ImageView
+        android:id="@+id/lockSeven"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:src="@drawable/lock_close"
+        app:layout_constraintEnd_toEndOf="@+id/numberSeven"
+        app:layout_constraintTop_toTopOf="@+id/numberSeven" />
+
+        <ImageView
+            android:id="@+id/numberEight"
+            android:layout_width="70dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="32dp"
+            android:src="@drawable/number_eight"
+            app:layout_constraintEnd_toEndOf="@+id/numberFive"
+            app:layout_constraintStart_toStartOf="@+id/numberFive"
+            app:layout_constraintTop_toBottomOf="@+id/numberFive" />
+
+    <ImageView
+        android:id="@+id/lockEight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:src="@drawable/lock_close"
+        app:layout_constraintEnd_toEndOf="@+id/numberEight"
+        app:layout_constraintTop_toTopOf="@+id/numberEight" />
+
+        <ImageView
+            android:id="@+id/numberNine"
+            android:layout_width="70dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="32dp"
+            android:src="@drawable/number_nine"
+            app:layout_constraintEnd_toEndOf="@+id/numberSix"
+            app:layout_constraintStart_toStartOf="@+id/numberSix"
+            app:layout_constraintTop_toBottomOf="@+id/numberSix" />
+
+    <ImageView
+        android:id="@+id/lockNine"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:src="@drawable/lock_close"
+        app:layout_constraintEnd_toEndOf="@+id/numberNine"
+        app:layout_constraintTop_toTopOf="@+id/numberNine" />
+
+        <ImageView
+            android:id="@+id/numberTen"
+            android:layout_width="70dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="32dp"
+            android:src="@drawable/number_ten"
+            app:layout_constraintEnd_toEndOf="@+id/numberSeven"
+            app:layout_constraintStart_toStartOf="@+id/numberSeven"
+            app:layout_constraintTop_toBottomOf="@+id/numberSeven" />
+
+    <ImageView
+        android:id="@+id/lockTen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:src="@drawable/lock_close"
+        app:layout_constraintEnd_toEndOf="@+id/numberTen"
+        app:layout_constraintTop_toTopOf="@+id/numberTen" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</ScrollView>

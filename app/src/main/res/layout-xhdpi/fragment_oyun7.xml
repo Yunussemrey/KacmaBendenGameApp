@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragment.Oyun7Fragment"
+    android:background="@drawable/orig">
+
+
+    <ImageView
+        android:id="@+id/stop7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:src="@drawable/pause"
+        app:layout_constraintBottom_toBottomOf="@+id/textView10"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textView10" />
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:fontFamily="casual"
+        android:text="Puan: "
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/puan7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView10"
+        app:layout_constraintStart_toEndOf="@+id/textView10"
+        app:layout_constraintTop_toTopOf="@+id/textView10" />
+
+    <TextView
+        android:id="@+id/textViewZaman7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:fontFamily="casual"
+        android:text="Zaman: "
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/textView10"
+        app:layout_constraintStart_toStartOf="@+id/textView10"
+        app:layout_constraintTop_toBottomOf="@+id/textView10" />
+
+    <TextView
+        android:id="@+id/zaman7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@+id/textViewZaman7"
+        app:layout_constraintStart_toEndOf="@+id/textViewZaman7"
+        app:layout_constraintTop_toTopOf="@+id/textViewZaman7" />
+
+    <androidx.gridlayout.widget.GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:paddingTop="50dp"
+        app:columnCount="6"
+        app:layout_constraintBottom_toTopOf="@+id/adViewOyun7"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewZaman7"
+        app:rowCount="5">
+
+        <ImageView
+            android:id="@+id/muz1"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/banana"
+            app:layout_column="0"
+            app:layout_gravity="center"
+            app:layout_row="0" />
+
+        <ImageView
+            android:id="@+id/zombi1"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/zombi"
+            app:layout_column="1"
+            app:layout_gravity="center"
+            app:layout_row="0" />
+
+        <ImageView
+            android:id="@+id/bomba1"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/bomb"
+            app:layout_column="2"
+            app:layout_gravity="center"
+            app:layout_row="0" />
+
+        <ImageView
+            android:id="@+id/elma1"
+            android:layout_width="50dp"
+            android:layout_height="60dp"
+            android:src="@drawable/apple"
+            app:layout_column="3"
+            app:layout_gravity="center"
+            app:layout_row="0" />
+
+        <ImageView
+            android:id="@+id/kid1"
+            android:layout_width="50dp"
+            android:layout_height="70dp"
+            android:src="@drawable/kid"
+            app:layout_column="4"
+            app:layout_row="0" />
+
+        <ImageView
+            android:id="@+id/zombi2"
+            android:layout_width="50dp"
+            android:layout_height="60dp"
+            android:src="@drawable/zombi"
+            app:layout_column="5"
+            app:layout_row="0" />
+
+        <ImageView
+            android:id="@+id/zombi3"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/zombi"
+            app:layout_column="0"
+            app:layout_row="1" />
+
+        <ImageView
+            android:id="@+id/kid2"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:src="@drawable/kid"
+            app:layout_column="1"
+            app:layout_row="1" />
+
+        <ImageView
+            android:id="@+id/kid3"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:src="@drawable/kid"
+            app:layout_column="2"
+            app:layout_row="1" />
+
+        <ImageView
+            android:id="@+id/zombi4"
+            android:layout_width="50dp"
+            android:layout_height="60dp"
+            android:src="@drawable/zombi"
+            app:layout_column="3"
+            app:layout_row="1" />
+
+        <ImageView
+            android:id="@+id/kid4"
+            android:layout_width="50dp"
+            android:layout_height="70dp"
+            android:src="@drawable/kid"
+            app:layout_column="4"
+            app:layout_row="1" />
+
+        <ImageView
+            android:id="@+id/muz2"
+            android:layout_width="50dp"
+            android:layout_height="60dp"
+            android:src="@drawable/banana"
+            app:layout_column="5"
+            app:layout_row="1" />
+
+        <ImageView
+            android:id="@+id/elma2"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/apple"
+            app:layout_column="0"
+            app:layout_gravity="center"
+            app:layout_row="2" />
+
+        <ImageView
+            android:id="@+id/kid5"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:src="@drawable/kid"
+            app:layout_column="1"
+            app:layout_row="2" />
+
+        <ImageView
+            android:id="@+id/bomba2"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/bomb"
+            app:layout_column="2"
+            app:layout_gravity="center"
+            app:layout_row="2" />
+
+        <ImageView
+            android:id="@+id/zombi5"
+            android:layout_width="50dp"
+            android:layout_height="60dp"
+            android:src="@drawable/zombi"
+            app:layout_column="3"
+            app:layout_row="2" />
+
+        <ImageView
+            android:id="@+id/elma3"
+            android:layout_width="50dp"
+            android:layout_height="60dp"
+            android:src="@drawable/apple"
+            app:layout_column="4"
+            app:layout_gravity="center"
+            app:layout_row="2" />
+
+        <ImageView
+            android:id="@+id/kid6"
+            android:layout_width="60dp"
+            android:layout_height="70dp"
+            android:src="@drawable/kid"
+            app:layout_column="5"
+            app:layout_row="2" />
+
+        <ImageView
+            android:id="@+id/zombi6"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/zombi"
+            app:layout_column="0"
+            app:layout_row="3" />
+
+        <ImageView
+            android:id="@+id/kid7"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:src="@drawable/kid"
+            app:layout_column="1"
+            app:layout_row="3" />
+
+        <ImageView
+            android:id="@+id/muz3"
+            android:layout_width="50dp"
+            android:layout_height="60dp"
+            android:src="@drawable/banana"
+            app:layout_column="2"
+            app:layout_gravity="center"
+            app:layout_row="3" />
+
+        <ImageView
+            android:id="@+id/zombi7"
+            android:layout_width="50dp"
+            android:layout_height="60dp"
+            android:src="@drawable/zombi"
+            app:layout_column="3"
+            app:layout_gravity="center"
+            app:layout_row="3" />
+
+        <ImageView
+            android:id="@+id/kid8"
+            android:layout_width="50dp"
+            android:layout_height="70dp"
+            android:src="@drawable/kid"
+            app:layout_column="4"
+            app:layout_row="3" />
+
+        <ImageView
+            android:id="@+id/elma4"
+            android:layout_width="50dp"
+            android:layout_height="60dp"
+            android:src="@drawable/apple"
+            app:layout_column="5"
+            app:layout_row="3" />
+
+        <ImageView
+            android:id="@+id/elma5"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/apple"
+            app:layout_column="0"
+            app:layout_row="4" />
+
+        <ImageView
+            android:id="@+id/zombi8"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/zombi"
+            app:layout_column="1"
+            app:layout_row="4" />
+
+        <ImageView
+            android:id="@+id/bomba3"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/bomb"
+            app:layout_column="2"
+            app:layout_row="4" />
+
+        <ImageView
+            android:id="@+id/kid9"
+            android:layout_width="50dp"
+            android:layout_height="70dp"
+            android:src="@drawable/kid"
+            app:layout_column="3"
+            app:layout_row="4" />
+
+        <ImageView
+            android:id="@+id/zombi9"
+            android:layout_width="50dp"
+            android:layout_height="60dp"
+            android:src="@drawable/zombi"
+            app:layout_column="4"
+            app:layout_row="4" />
+
+        <ImageView
+            android:id="@+id/kid10"
+            android:layout_width="60dp"
+            android:layout_height="70dp"
+            android:src="@drawable/kid"
+            app:layout_column="5"
+            app:layout_row="4" />
+
+
+    </androidx.gridlayout.widget.GridLayout>
+
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/adViewOyun7"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:adSize="BANNER"
+        app:adUnitId="ca-app-pub-3475820063501035/3263612419"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+    </com.google.android.gms.ads.AdView>
+
+    <TextView
+        android:id="@+id/textView17"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:fontFamily="@font/joti_one"
+        android:text="Bölüm 7"
+        android:textColor="#852525"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/textView10"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textView10" />
+</androidx.constraintlayout.widget.ConstraintLayout>
+

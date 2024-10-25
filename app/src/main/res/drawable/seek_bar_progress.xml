@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Arka plan (progress bar dolmayan kısım) -->
+    <item>
+        <shape android:shape="rectangle">
+            <corners android:radius="10dp" /> <!-- Kenarları oval -->
+            <solid android:color="@color/white" /> <!-- Arka plan rengi (açık gri) -->
+        </shape>
+    </item>
+
+    <!-- Dolu kısım (progress bar dolan kısım) -->
+    <item android:id="@android:id/progress">
+        <clip>
+            <shape android:shape="rectangle">
+                <corners android:radius="10dp" /> <!-- Kenarları oval -->
+                <solid android:color="@color/sari" /> <!-- Progress bar rengi beyaz -->
+            </shape>
+        </clip>
+    </item>
+</layer-list>

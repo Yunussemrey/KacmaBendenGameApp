@@ -13,26 +13,35 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.navigation.Navigation;
 
 import android.os.CountDownTimer;
 import android.os.Handler;
+import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.LoadAdError;
 import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.OnUserEarnedRewardListener;
 import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 import com.google.android.gms.ads.interstitial.InterstitialAd;
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
+import com.google.android.gms.ads.rewarded.RewardItem;
+import com.google.android.gms.ads.rewarded.RewardedAd;
+import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback;
 import com.google.android.material.snackbar.Snackbar;
-import com.yunusemre.oyunapp.MusicService;
 import com.yunusemre.oyunapp.R;
 import com.yunusemre.oyunapp.databinding.FragmentOyun6Binding;
+import com.yunusemre.oyunapp.entity.Action;
+import com.yunusemre.oyunapp.entity.Music2Service;
 
 import java.util.Random;
 
@@ -41,15 +50,13 @@ public class Oyun6Fragment extends Fragment {
     private FragmentOyun6Binding binding;
     int skor;
     ImageView[] imageArray;
-    Handler handler;
-    Runnable runnable;
     MediaPlayer mediaPlayerCharacter;
     MediaPlayer mediaPlayerZombi;
     MediaPlayer mediaPlayerFruit;
     MediaPlayer mediaPlayerBomb;
     CountDownTimer countDownTimer;
     boolean ispaused = true;
-    private long sure = 10000; // 10 saniye
+    private long sure = 25000; // 25 saniye
     SharedPreferences sp;
     SharedPreferences sp2;
     SharedPreferences.Editor editor2;
@@ -57,18 +64,23 @@ public class Oyun6Fragment extends Fragment {
     private AdView bannerOyun6;
     private AdRequest adRequest;
     private InterstitialAd mInterstitialAd;
-    private MusicService musicService;
+    private RewardedAd rewardedAd;
+    private SharedPreferences preferences2;
     int gelenPuan;
+   Action action = new Action();
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentOyun6Binding.inflate(inflater,container,false);
 
+        preferences2 = PreferenceManager.getDefaultSharedPreferences(getContext());
+        float volume = preferences2.getFloat("touch_sound_volume", 0.5f);
+
         sp2 = requireActivity().getSharedPreferences("OyunSonuPuan",Context.MODE_PRIVATE);
         editor2 = sp2.edit();
 
         sp = requireContext().getSharedPreferences("Veriler", Context.MODE_PRIVATE);
-         gelenPuan = sp.getInt("puan6",0);
+         gelenPuan = sp.getInt("enYüksekPuan",0);
 
         MobileAds.initialize(requireContext(), new OnInitializationCompleteListener() {
             @Override
@@ -79,6 +91,24 @@ public class Oyun6Fragment extends Fragment {
         bannerOyun6 = binding.adViewOyun6;
         adRequest = new AdRequest.Builder().build();
         bannerOyun6.loadAd(adRequest);
+            // ödül
+        RewardedAd.load(requireContext(), "ca-app-pub-3475820063501035/5810373373",
+                adRequest, new RewardedAdLoadCallback() {
+                    @Override
+                    public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+                        // Handle the error.
+
+                        rewardedAd = null;
+                    }
+
+                    @Override
+                    public void onAdLoaded(@NonNull RewardedAd ad) {
+                        rewardedAd = ad;
+
+                    }
+                });
+
+
 
         InterstitialAd.load(requireContext(),"ca-app-pub-3475820063501035/7866036556", adRequest,
                 new InterstitialAdLoadCallback() {
@@ -93,9 +123,9 @@ public class Oyun6Fragment extends Fragment {
 
 
         imageArray = new ImageView[]{binding.bomba1,binding.bomba2,binding.kid1,binding.kid2,binding.kid3,binding.kid4,binding.kid5,binding.kid6
-        ,binding.elma1,binding.elma2,binding.muz1};
+        ,binding.elma1,binding.elma2,binding.muz1,binding.zombi1,binding.zombi2,binding.zombi3,binding.zombi4,binding.zombi5};
 
-        hideImages();
+
 
 
 
@@ -110,7 +140,7 @@ public class Oyun6Fragment extends Fragment {
         OnBackPressedCallback geriTusu = new OnBackPressedCallback(true) {
             @Override
             public void handleOnBackPressed() {
-                Snackbar.make(requireView(),"Oyundan çıkmak istiyor musun?",Snackbar.LENGTH_INDEFINITE).setAction("Evet", new View.OnClickListener() {
+                Snackbar.make(requireView(),"Oyundan çıkmak istiyor musun?",Snackbar.LENGTH_LONG).setAction("Evet", new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         setEnabled(false);
@@ -126,45 +156,40 @@ public class Oyun6Fragment extends Fragment {
 
         binding.stop6.setOnClickListener(v -> {
             pauseTimer();
-            musicService.stopMusic();
-
-            handler.removeCallbacks(runnable);
+            action.stopRunnable();
             for (ImageView image : imageArray) {
                 image.setVisibility(View.INVISIBLE);
             }
 
             AlertDialog.Builder alert = new AlertDialog.Builder(getContext());
+            View alertView = getLayoutInflater().inflate(R.layout.alert_dialog_stop,null);
+            alert.setView(alertView);
+            TextView btnPozitif = alertView.findViewById(R.id.stopPozitif);
+            TextView btnNegatif = alertView.findViewById(R.id.stopNegatif);
+            AlertDialog alertDialog = alert.create();
 
-            alert.setTitle("Oyun Durduruldu !");
-            alert.setMessage("Devam etmek ister misiniz ?");
-
-            alert.setPositiveButton("Devam et", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-
-                    resumeTimer();
-
-                    hideImages();
-                    musicService.startMusic();
-
-
-                }
+            btnPozitif.setOnClickListener(v1 -> {
+                resumeTimer();
+                action.karakterGizle(imageArray,530,16);
+                alertDialog.dismiss();
             });
-            alert.setNegativeButton("Ana Sayfa", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    requireActivity().getSupportFragmentManager().popBackStack(null,FragmentManager.POP_BACK_STACK_INCLUSIVE);
-                }
+            btnNegatif.setOnClickListener(v1 -> {
+                anaSayfa();
+                alertDialog.dismiss();
             });
-            alert.setCancelable(false);
-            alert.show();
-
+            alertDialog.setCancelable(false);
+            alertDialog.show();
 
         });
             mediaPlayerBomb = MediaPlayer.create(requireContext(),R.raw.music_bomb);
             mediaPlayerCharacter = MediaPlayer.create(requireContext(),R.raw.sound_toch);
             mediaPlayerFruit = MediaPlayer.create(requireContext(),R.raw.sound_toch_two);
-            mediaPlayerZombi = MediaPlayer.create(requireContext(),R.raw.sound_touch_three);
+            mediaPlayerZombi = MediaPlayer.create(requireContext(),R.raw.zombie);
+
+            mediaPlayerCharacter.setVolume(volume,volume);
+            mediaPlayerZombi.setVolume(volume,volume);
+            mediaPlayerBomb.setVolume(volume,volume);
+            mediaPlayerFruit.setVolume(volume,volume);
 
         // karaktere basmalar ..
         binding.kid1.setOnClickListener(v -> {
@@ -284,9 +309,7 @@ public class Oyun6Fragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        Intent intent = new Intent(requireActivity(), MusicService.class);
-        intent.putExtra("track",2);
-        requireActivity().startService(intent);
+
     }
 
 
@@ -325,10 +348,9 @@ public class Oyun6Fragment extends Fragment {
             @Override
             public void onFinish() {
 
-              musicService.stopMusic();
                 ispaused = false;
-                binding.zaman6.setText("Süre Bitti !");
-                handler.removeCallbacks(runnable);
+                binding.textViewzaman6.setText("Süre Bitti !");
+               action.stopRunnable();
                 for (ImageView image : imageArray) {
                     image.setVisibility(View.INVISIBLE);
                 }
@@ -343,104 +365,144 @@ public class Oyun6Fragment extends Fragment {
         ispaused = true;
     }
     private void sonSkor(){
-        int sonPuan = Integer.parseInt(binding.puan6.getText().toString());
-        editor = sp.edit();
-        editor2.putInt("sonPuan",sonPuan);
-        editor2.apply();
-        editor.putInt("puan7",sonPuan);
-        if (sonPuan>=85){
-            editor.putBoolean("kilit7",true);
-            editor.apply();
-            AlertDialog.Builder alert = new AlertDialog.Builder(requireContext());
-            alert.setTitle("Bölüm Sonu ! Puanınız: "+sonPuan);
-            alert.setMessage("Tebrikler! Sonraki bölüme geçmeye hak kazandınız.");
-            alert.setPositiveButton("Sonraki Bölüm", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    //Sonra ki bölüme git!
+
+            int sonPuan = Integer.parseInt(binding.puan6.getText().toString());
+            editor = sp.edit();
+            editor2.putInt("sonPuan",sonPuan);
+            editor2.apply();
+            editor.putInt("enYüksekPuan",sonPuan);
+            if (sonPuan>=100){
+                editor.putBoolean("kilit7",true);
+                editor.apply();
+                AlertDialog.Builder alert = new AlertDialog.Builder(getContext());
+                View alertView = getLayoutInflater().inflate(R.layout.alert_dialog_sonskor,null);
+                alert.setView(alertView);
+                TextView baslik = alertView.findViewById(R.id.sonSkorBaslik);
+                TextView mesaj = alertView.findViewById(R.id.sonSkorMesaj);
+                TextView btnPozitif = alertView.findViewById(R.id.sonSkorPozitif);
+                TextView btnNegatif = alertView.findViewById(R.id.sonSkorNegatif);
+                AlertDialog alertDialog = alert.create();
+
+                baslik.setText("Bölüm Sonu ! Puanınız: "+sonPuan);
+                mesaj.setText("Tebrikler! Sonraki bölüme geçmeye hak kazandınız");
+                btnPozitif.setText("İleri");
+                btnPozitif.setOnClickListener(v -> {
                     if (mInterstitialAd != null){
                         mInterstitialAd.show(requireActivity());
                     }
+
                     FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
                     FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                     Oyun7Fragment oyun7Fragment = new Oyun7Fragment();
                     fragmentTransaction.replace(R.id.fragmentContainerView, oyun7Fragment);
                     fragmentTransaction.addToBackStack(null);
                     fragmentTransaction.commit();
-                }
-            });
-            alert.setNegativeButton("Ana Sayfa", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    requireActivity().getSupportFragmentManager().popBackStack(null,FragmentManager.POP_BACK_STACK_INCLUSIVE);
-                }
-            });
-            alert.setCancelable(false);
-            alert.show();
+                    alertDialog.dismiss();
+                });
+                btnNegatif.setText("Ana Sayfa");
+                btnNegatif.setOnClickListener(v -> {
+                    anaSayfa();
+                    alertDialog.dismiss();
+                });
+                alertDialog.setCancelable(false);
+                alertDialog.show();
 
 
-        }else {
-            AlertDialog.Builder alert = new AlertDialog.Builder(requireContext());
-            alert.setTitle("Bölüm Sonu! Puanınız: "+sonPuan);
-            alert.setMessage("Maalesef! Sonraki bölüme geçemediniz");
-            alert.setPositiveButton("Tekrar et", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    //fragment tekrar et!!
-                    skor = gelenPuan;
-                    binding.puan6.setText(gelenPuan+"");
-                    hideImages();
-                    musicService.startMusic();
-                    countDownTimer.start();
-                }
-            });
-            alert.setNegativeButton("Ana Sayfa", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    requireActivity().getSupportFragmentManager().popBackStack(null,FragmentManager.POP_BACK_STACK_INCLUSIVE);
-                }
-            });
-            alert.setCancelable(false);
-            alert.show();
+            }else {
+                AlertDialog.Builder alert = new AlertDialog.Builder(getContext());
+                View alertView = getLayoutInflater().inflate(R.layout.alert_dialog_sonskor,null);
+                alert.setView(alertView);
+                TextView baslik = alertView.findViewById(R.id.sonSkorBaslik);
+                TextView mesaj = alertView.findViewById(R.id.sonSkorMesaj);
+                TextView btnPozitif = alertView.findViewById(R.id.sonSkorPozitif);
+                TextView btnNegatif = alertView.findViewById(R.id.sonSkorNegatif);
+                AlertDialog alertDialog = alert.create();
 
-        }
+                baslik.setText("Bölüm Sonu! Puanınız: "+sonPuan);
+                mesaj.setText("Maalesef! Sonraki bölüme geçemediniz");
+                btnPozitif.setText("Ana Sayfa");
+                btnPozitif.setOnClickListener(v -> {
+                    anaSayfa();
+                    alertDialog.dismiss();
+                });
+                btnNegatif.setVisibility(View.INVISIBLE);
+                alertDialog.setCancelable(false);
+                alertDialog.show();
+
+            }
+
+
 
     }
 
     private void oyunBitti(){
         pauseTimer();
-       musicService.stopMusic();
-
-        handler.removeCallbacks(runnable);
+       action.stopRunnable();
         for (ImageView image : imageArray) {
             image.setVisibility(View.INVISIBLE);
         }
+        Intent musicIntent = new Intent(getActivity(), Music2Service.class);
+        getActivity().stopService(musicIntent);
 
-        AlertDialog.Builder alert = new AlertDialog.Builder(getContext());
+        AlertDialog.Builder alert1 = new AlertDialog.Builder(getContext());
 
-        alert.setTitle("Kaybettiniz !");
-        alert.setMessage("Ana Sayfaya Dönmek İster misiniz ?");
+        View alertView = getLayoutInflater().inflate(R.layout.alert_dialog_oyun_bitti,null);
+        alert1.setView(alertView);
+        TextView btnAdd = alertView.findViewById(R.id.btnReklam);
+        TextView btnBack = alertView.findViewById(R.id.btnBack);
+        AlertDialog alertDialog = alert1.create();
 
-        alert.setPositiveButton("Tekrar Dene", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-
-                // Reklam ile 1 hak daha
-
-
-
-            }
+        btnAdd.setOnClickListener(v -> {
+            yenidenOyna();
+            alertDialog.dismiss();
         });
-        alert.setNegativeButton("Ana Sayfa", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                requireActivity().getSupportFragmentManager().popBackStack(null,FragmentManager.POP_BACK_STACK_INCLUSIVE);
-            }
+        btnBack.setOnClickListener(v -> {
+            anaSayfa();
+            alertDialog.dismiss();
         });
-        alert.setCancelable(false);
-        alert.show();
+        alert1.setCancelable(false);
+        alertDialog.show();
+    }
+    public void anaSayfa(){
+        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+        fragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        GirisFragment girisFragment = new GirisFragment();
+        fragmentTransaction.replace(R.id.fragmentContainerView, girisFragment);
+        fragmentTransaction.commit();
+
+        editor = sp.edit();
+        editor.putInt("enYüksekPuan",0);
+        editor.apply();
+        binding.puan6.setText("0");
     }
 
+    public void yenidenOyna() {
+        // geçiş reklamı ile tekrar hak
+        if (rewardedAd != null) {
+            rewardedAd.show(requireActivity(), new OnUserEarnedRewardListener() {
+                @Override
+                public void onUserEarnedReward(@NonNull RewardItem rewardItem) {
+                    Log.e("hataMesajı", "bölüm 6 Ödül reklamı gösterildi");
+                    FragmentTransaction ft = getParentFragmentManager().beginTransaction(); // fragmentı yeniden başlat !!!
+                    ft.replace(R.id.fragmentContainerView, new Oyun6Fragment()).commit();
+                }
+            });
+        }else {
+            AlertDialog.Builder alert = new AlertDialog.Builder(getContext());
+            View alertView = getLayoutInflater().inflate(R.layout.alert_dialog_no_reklam,null);
+            alert.setView(alertView);
+            TextView btnAnaSayfa = alertView.findViewById(R.id.btnAnaMenu);
+            AlertDialog alertDialog = alert.create();
+            btnAnaSayfa.setOnClickListener(v -> {
+                anaSayfa();
+                alertDialog.dismiss();
+            });
+            alertDialog.setCancelable(false);
+            alertDialog.show();
+        }
+    }
 
 
 
@@ -449,52 +511,44 @@ public class Oyun6Fragment extends Fragment {
     @Override
     public void onPause() {
         super.onPause();
-        musicService.stopMusic();
-
+        action.stopRunnable();
+        FragmentTransaction ft = getParentFragmentManager().beginTransaction();
+        ft.remove(Oyun6Fragment.this).commit();
+        Intent musicIntent = new Intent(getActivity(), Music2Service.class);
+        getActivity().stopService(musicIntent);
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        handler.removeCallbacks(runnable);
+        if (action != null) {
+            action.stopRunnable();
+        }
+
         for (ImageView image : imageArray) {
             image.setVisibility(View.INVISIBLE);
         }
-        AlertDialog.Builder alert = new AlertDialog.Builder(requireContext());
-        alert.setTitle("Bölüm 6");
-        alert.setMessage("Görev: İşler biraz zorlaştı. Süre bitene kadar 85 puanı geçmen gerekiyor.");
-        alert.setPositiveButton("Oyna", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                hideImages();
-                startTimer();
+        AlertDialog.Builder alert = new AlertDialog.Builder(getContext());
+        View alertView = getLayoutInflater().inflate(R.layout.alert_dialog_oyun6,null);
+        alert.setView(alertView);
+        TextView baslik = alertView.findViewById(R.id.textViewBaslik);
+        TextView mesaj = alertView.findViewById(R.id.textViewMessage);
+        TextView btnOyna = alertView.findViewById(R.id.btnOyna);
+        AlertDialog alertDialog = alert.create();
 
-            }
+        baslik.setText("Bölüm 6");
+        mesaj.setText("İşler biraz zorlaştı. Süre bitene kadar 100 puanı geçmen gerekiyor.");
+        btnOyna.setText("Oyna");
+        btnOyna.setOnClickListener(v -> {
+            action.karakterGizle(imageArray,530,16);
+            startTimer();
+            alertDialog.dismiss();
         });
-        alert.setCancelable(false);
-        alert.show();
+        alertDialog.setCancelable(false);
+        alertDialog.show();
+        Intent musicIntent = new Intent(getActivity(), Music2Service.class);
+        getActivity().startService(musicIntent);
     }
 
-    public void hideImages() {
 
-        handler = new Handler();
-
-        runnable = new Runnable() {
-            @Override
-            public void run() {
-
-                for (ImageView image : imageArray) {
-                    image.setVisibility(View.INVISIBLE);
-                }
-
-                Random random = new Random();
-                int i = random.nextInt(16);
-                imageArray[i].setVisibility(View.VISIBLE);
-
-                handler.postDelayed(this, 500);
-
-            }
-        };
-        handler.post(runnable);
-    }
 }

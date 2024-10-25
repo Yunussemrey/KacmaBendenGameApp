@@ -114,10 +114,19 @@
         android:id="@+id/oyun10Fragment"
         android:name="com.yunusemre.oyunapp.fragment.Oyun10Fragment"
         android:label="fragment_oyun10"
-        tools:layout="@layout/fragment_oyun10" />
+        tools:layout="@layout/fragment_oyun10" >
+        <action
+            android:id="@+id/oyun11Git"
+            app:destination="@id/oyun11Fragment" />
+    </fragment>
     <fragment
         android:id="@+id/bolumFragment"
         android:name="com.yunusemre.oyunapp.fragment.BolumFragment"
         android:label="fragment_bolum"
         tools:layout="@layout/fragment_bolum" />
+    <fragment
+        android:id="@+id/oyun11Fragment"
+        android:name="com.yunusemre.oyunapp.fragment.Oyun11Fragment"
+        android:label="fragment_oyun11"
+        tools:layout="@layout/fragment_oyun11" />
 </navigation>
